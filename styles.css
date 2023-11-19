@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: "Helvetica";
+}
+
+#grid_wrapper {
+    min-width: 50%;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #EBEBEB;
+    border-radius: 20px;
+    padding: 20px;
+    height: fit-content;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    background-color: #EBEBEB;
+    height: fit-content;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#set_grids_button {
+    width: 100px;
+    border: 1px solid #B0B0B0;
+    border-radius: 8px;
+    height: 30px;
+    padding: 4px;
+    margin-bottom: 4px;
+    border: 1px solid #B0B0B0;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.input{
+    width: 200px;
+    border: 1px solid #B0B0B0;
+    border-radius: 8px;
+    height: 30px;
+    padding: 0 8px;
+    margin: 12px 0;
+}
