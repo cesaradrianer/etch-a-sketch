@@ -6,7 +6,7 @@ const resetButton = document.getElementById('reset')
 const rainbowModeButton = document.getElementById('rainbow_mode')
 const normalModeButton = document.getElementById('normal_mode')
 
-/* Adding a function that clear the grid */
+/* Adding a function that clears the grid */
 resetButton.onclick = () => {grid.innerHTML = ''}
 
 let grid_cells = []
