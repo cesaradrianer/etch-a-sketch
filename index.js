@@ -1,54 +1,93 @@
-/*Getting the basic HTML elements to work with*/
+/* Getting the basic HTML elements to work with */
 const grid = document.getElementById("grid")
 const setGridsButton = document.getElementById('set_grids_button')
 const setGridsInput = document.getElementById('grid_num')
-const setCellSize = document.getElementById('cell_size')
+const resetButton = document.getElementById('reset')
+const rainbowModeButton = document.getElementById('rainbow_mode')
+const normalModeButton = document.getElementById('normal_mode')
 
-/*Adding click styles to the button*/
-setGridsButton.onmousedown = () => {setGridsButton.style.backgroundColor = "#CFCFCF"}
-setGridsButton.onmouseup = () => {setGridsButton.style.backgroundColor = "#EBEBEB"}
+/* Adding a function that clear the grid */
+resetButton.onclick = () => {grid.innerHTML = ''}
 
-/*Styling the grid*/
-grid.style.display = "grid"
+let grid_cells = []
 
-/*Getting the cells after creating them*/
-let grid_cells;
+/* When the user clicks on "Set Grids", the sketchpad will be created */
+setGridsButton.onclick = () => {
 
-/*Inserting the grid cells*/
-set_grids_button.addEventListener('click', () => {
+    grid.innerHTML = ''
 
-    for (let i = 0; i < parseInt(setGridsInput.value); i++) {
+    for (let i = 0; i < Math.pow(parseInt(setGridsInput.value), 2); i++) {
 
-        grid.insertAdjacentHTML("beforeend", "<div class='grid_cell'><div/>")
-        grid.style.gridTemplateColumns = `repeat(${parseInt(setGridsInput.value)}, ${setCellSize.value + "px"} 1fr)`
-        grid.style.gridTemplateRows = `repeat(${parseInt(setGridsInput.value)}, ${setCellSize.value + "px"} 1fr)`
+        const grid_cell = document.createElement('div')
+        grid_cell.className = 'grid_cell'
+        grid.append(grid_cell)
+        grid_cells.push(grid_cell)
+
+        grid_cell.addEventListener('dragstart', (e) => {
+
+            e.preventDefault()
+
+        })
 
     }
 
-})
+    grid.style.gridTemplateColumns = `repeat(${parseInt(setGridsInput.value)}, 1fr)`
+    grid.style.gridTemplateRows = `repeat(${parseInt(setGridsInput.value)}, 1fr)`
 
-grid_cells = document.querySelectorAll(".grid_cell")
+    etch_a_sketch()
 
+}
+
+/* Coding two different color modes */
 let flag = false
 
-/*Adding some events, so that when the mouse is down, one can start drawing in the grid*/
-for (let j = 0; j < grid_cells.length; j++) {
+let color = "#B0B0B0"
 
-    grid_cells[j].style.backgroundColor = "#EBEBEB"
+function rainbowMode() {
 
-    grid_cells[j].addEventListener('mousedown', () => {
-        flag = true
-        grid_cells[j].style.backgroundColor = "#B0B0B0"
-    })
+    let r = Math.floor(Math.random() * 256)
+    let g = Math.floor(Math.random() * 256)
+    let b = Math.floor(Math.random() * 256)
 
-    grid_cells[j].addEventListener('mouseover', () => {
-        if(flag == true) {
-            grid_cells[j].style.backgroundColor = "#B0B0B0"
-        }
-    })
+    color = `rgb(${r}, ${g}, ${b})`
 
-    grid_cells[j].addEventListener('mouseup', () => {
-        flag = false
-    })
+}
+
+function normalMode() {
+
+    color = '#B0B0B0'
+
+}
+
+let colorMode = 'normal'
+
+rainbowModeButton.onclick = () => {colorMode = 'rainbow'}
+
+normalModeButton.onclick = () => {colorMode = 'normal'}
+
+/* Adding some events, so that when the mouse is down, one can start drawing in the grid */
+function etch_a_sketch() {
+
+    for (let j = 0; j < grid_cells.length; j++) {
     
+        grid_cells[j].addEventListener('mousedown', () => {
+            flag = true
+        })
+    
+        grid_cells[j].addEventListener('mouseover', () => {
+            if(flag == true && colorMode == 'normal') {
+                normalMode()
+                grid_cells[j].style.backgroundColor = color
+            } else if (flag == true && colorMode == 'rainbow') {
+                rainbowMode()
+                grid_cells[j].style.backgroundColor = color
+            }
+        })
+    
+        grid_cells[j].addEventListener('mouseup', () => {
+            flag = false
+        })
+        
+    }
+
 }

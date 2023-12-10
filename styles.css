@@ -3,41 +3,44 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    font-family: "Helvetica";
+    font-family: "Work Sans", "sans serif";
+    background-color: #f3f3f3;
 }
 
 #grid_wrapper {
-    min-width: 50%;
-    margin: 20px;
+    width: 900px;
+    height: 960px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid #EBEBEB;
+    border: 1px solid #dbdbdb;
     border-radius: 20px;
     padding: 20px;
     height: fit-content;
+}
+
+#grid {
+    width: 900px;
+    height: 800px;
+    display: grid;
+    gap: 1px;
+    border: 1px solid #dbdbdb;
 }
 
 #controls {
     display: flex;
     flex-direction: column;
-    background-color: #EBEBEB;
+    background-color: #ebebeb;
     height: fit-content;
-    margin: 20px;
+    margin: 10px;
     border-radius: 20px;
     padding: 20px;
 }
 
-#set_grids_button {
-    width: 100px;
-    border: 1px solid #B0B0B0;
-    border-radius: 8px;
-    height: 30px;
-    padding: 4px;
-    margin-bottom: 4px;
-    border: 1px solid #B0B0B0;
-    border-radius: 6px;
-    cursor: pointer;
+#controls > div {
+    display: flex;
+    flex-direction: column;
 }
 
 .input{
@@ -47,4 +50,22 @@ body {
     height: 30px;
     padding: 0 8px;
     margin: 12px 0;
+}
+
+.btn {
+    border: 1px solid #B0B0B0;
+    border-radius: 8px;
+    height: 30px;
+    padding: 0 8px;
+    margin: 2px 0;
+    font-family: "Work Sans";
+}
+
+.btn:hover {
+    background-color: #CFCFCF;
+    cursor: pointer;
+}
+
+.grid_cell {
+    background-color: #dbdbdb;
 }
